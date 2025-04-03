@@ -5,6 +5,7 @@ import Squares from "./Squares";
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 import { Star, MapPin, Calendar, Heart, X, Clock, Award, Bookmark, MessageSquare, Phone } from "lucide-react"; // For icons
 import BookAppointment from "./BookAppointment"; // Import the BookAppointment component
+import HospitalMapView from "./HospitalMapView";
 
 const API_URL = "http://127.0.0.1:5000/user/doctors"; // Corrected API URL
 
@@ -306,10 +307,12 @@ const DoctorList = () => {
           </motion.div>
         ) : (
           <div className="w-full max-w-7xl mx-auto p-2">
-            <div className="bg-white rounded-xl shadow-lg h-64 flex items-center justify-center">
-              <p className="text-gray-500 text-sm">Map view coming soon</p>
+            <div className="bg-white rounded-xl shadow-lg h-[500px]">
+              <HospitalMapView />
             </div>
           </div>
+
+
         )}
       </div>
 
