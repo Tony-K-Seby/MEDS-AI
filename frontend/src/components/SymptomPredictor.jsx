@@ -180,7 +180,7 @@ const SymptomPredictor = ({ onPredictionResult }) => {
       {/* Blurred Overlay when loading */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md rounded-lg pointer-events-none">
-          <LifeLine color="#ffffff" size="medium" text="Predicting..." />
+          <LifeLine color="#7fb2e6" size="medium" text="Predicting..." />
         </div>
       )}
 
