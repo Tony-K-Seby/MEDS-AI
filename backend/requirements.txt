@@ -81,7 +81,6 @@ plotly==5.18.0
 prompt_toolkit==3.0.50
 protobuf==4.25.3
 pyarrow==19.0.1
-PyAudio==0.2.14
 pycparser==2.22
 pydeck==0.8.1b0
 pyexcel==0.7.1
