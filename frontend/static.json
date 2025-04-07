@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "headers": {
+    "/assets/(.*).css": {
+      "Content-Type": "text/css"
+    },
+    "/assets/(.*).js": {
+      "Content-Type": "application/javascript"
+    }
+  }
+}
