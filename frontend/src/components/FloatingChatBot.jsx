@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Send, Loader, RefreshCw, MessageCircle, X } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:5000/prediction";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
 const FloatingChatBot = () => {
   const [sessionId, setSessionId] = useState(null);
@@ -41,7 +42,7 @@ const FloatingChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/start_chat`, { session_id: newSessionId });
+      const response = await axios.post(`${BASE_URL}/prediction/start_chat`, { session_id: newSessionId });
       setMessages([{ sender: "bot", text: response.data.message }]);
     } catch (error) {
       console.error("Error starting chat:", error);
@@ -63,7 +64,7 @@ const FloatingChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/process_message`, {
+      const response = await axios.post(`${BASE_URL}/prediction/process_message`, {
         session_id: sessionId,
         user_message: userMessage
       });

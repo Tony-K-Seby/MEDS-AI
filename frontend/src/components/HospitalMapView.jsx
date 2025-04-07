@@ -3,9 +3,10 @@ import { Map, Marker, Overlay } from "pigeon-maps";
 
 const HospitalMapView = () => {
   const [hospitals, setHospitals] = useState([]);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/hospitals/")
+    fetch(`${BASE_URL}/hospitals/`)
       .then((response) => response.json())
       .then((data) => setHospitals(data))
       .catch((error) => console.error("Error fetching hospitals:", error));

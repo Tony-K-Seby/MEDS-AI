@@ -2,6 +2,9 @@ import { useState } from "react";
 import caduceus from "../assets/caduceus.png";
 
 export default function Signup() {
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,7 +34,7 @@ export default function Signup() {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:5000/auth/register", {
+      const response = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,6 +3,9 @@ import { AuthContext } from "../context/AuthContext";
 import Squares from "./Squares";
 
 const PreviousPredictions = () => {
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  
   const { user, isAuthenticated } = useContext(AuthContext);
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
@@ -18,7 +21,7 @@ const PreviousPredictions = () => {
     setError(null);
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/prediction/previous-predictions?user_id=${user.id}`, {
+      const response = await fetch(`${BASE_URL}/prediction/previous-predictions?user_id=${user.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +52,7 @@ const PreviousPredictions = () => {
     if (!window.confirm("Are you sure you want to delete this prediction?")) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/prediction/delete_prediction`, {
+      const response = await fetch(`${BASE_URL}/prediction/delete_prediction`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

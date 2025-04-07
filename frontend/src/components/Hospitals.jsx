@@ -3,7 +3,8 @@ import Navbar from "./Navbar"; // Import the updated Navbar component
 import hospitalImage from "../assets/hospital.jpg"; // Default hospital image
 import Squares from "./Squares"; // Import Squares background component
 
-const API_URL = "http://127.0.0.1:5000/hospitals/"; // Backend API URL
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const HospitalCard = ({ hospital }) => {
   return (
@@ -39,7 +40,7 @@ const HospitalList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(`${BASE_URL}/hospitals/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch hospitals");

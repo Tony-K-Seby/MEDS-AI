@@ -1,12 +1,12 @@
-
-
-
 import { useState, useEffect, useContext } from 'react';
 import { X } from 'lucide-react';
 import { LifeLine } from 'react-loading-indicators';
 import { AuthContext } from '../context/AuthContext';
 
 const SymptomPredictor = ({ onPredictionResult }) => {
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const [inputValue, setInputValue] = useState('');
   const [symptoms, setSymptoms] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
@@ -107,7 +107,7 @@ const SymptomPredictor = ({ onPredictionResult }) => {
       console.log('Sending prediction request with payload:', payload);
       console.log('Authentication status:', isAuthenticated, 'Token exists:', !!token);
 
-      const response = await fetch('http://127.0.0.1:5000/prediction/predict', {
+      const response = await fetch(`${BASE_URL}/prediction/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

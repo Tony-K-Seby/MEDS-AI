@@ -63,6 +63,10 @@ import joblib
 import numpy as np
 import pandas as pd
 
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
+
 MODELS_DIR = "ml_models"
 
 # Load all models

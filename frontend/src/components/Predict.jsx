@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext"; // Make sure you have this import
 import SymptomPredictor from "./SymptomPredictor";
@@ -9,6 +6,9 @@ import Squares from "./Squares";
 import BookAppointment from "./BookAppointment"; // Import the BookAppointment component
 
 const Predict = () => {
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const { user, isAuthenticated } = useContext(AuthContext); // Get auth context
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const Predict = () => {
   
       const precautionsData = await Promise.all(
         diseases.map(async (disease) => {
-          const response = await fetch(`http://127.0.0.1:5000/user/disease/precautions?disease=${encodeURIComponent(disease)}`);
+          const response = await fetch(`${BASE_URL}/user/disease/precautions?disease=${encodeURIComponent(disease)}`);
           if (!response.ok) {
             throw new Error(`Failed to fetch precautions for ${disease}`);
           }
@@ -84,7 +84,7 @@ const Predict = () => {
     setError(null);
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/user/doctors/specialty/${specialtyId}`,
+        `${BASE_URL}/user/doctors/specialty/${specialtyId}`,
         {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,

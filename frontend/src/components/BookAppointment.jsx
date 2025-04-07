@@ -4,6 +4,8 @@ import { X, Clock, Check, Calendar } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 
 const BookAppointment = ({ doctor, onClose, onAppointmentBooked }) => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const { user } = useContext(AuthContext);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -44,7 +46,7 @@ const BookAppointment = ({ doctor, onClose, onAppointmentBooked }) => {
 
   const fetchAvailableSlots = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/doctor/${doctor?._id}/slots`, {
+      const response = await fetch(`${BASE_URL}/doctor/${doctor?._id}/slots`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +85,7 @@ const BookAppointment = ({ doctor, onClose, onAppointmentBooked }) => {
         slot: selectedSlot,
       });
   
-      const response = await fetch("http://127.0.0.1:5000/user/book-appointment", {
+      const response = await fetch(`${BASE_URL}/user/book-appointment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

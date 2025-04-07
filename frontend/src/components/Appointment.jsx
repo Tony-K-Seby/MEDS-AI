@@ -5,6 +5,9 @@ import { Loader2 } from 'lucide-react';
 import Squares from './Squares'; // Added import for Squares component
 
 const Appointments = () => {
+ 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const [appointments, setAppointments] = useState([]);
   const [doctorDetails, setDoctorDetails] = useState({});
   const [loading, setLoading] = useState(true);
@@ -19,7 +22,7 @@ const Appointments = () => {
     const fetchAppointments = async () => {
       try {
         // Fetch user's appointments
-        const response = await axios.get(`http://127.0.0.1:5000/user/appointments/${user.id}`);
+        const response = await axios.get(`${BASE_URL}/user/appointments/${user.id}`);
         console.log('DEBUG - Appointments data:', response.data);
         setAppointments(response.data.appointments);
         
@@ -30,7 +33,7 @@ const Appointments = () => {
         for (const docId of doctorIds) {
           try {
             // Use your existing detailed doctor endpoint
-            const docResponse = await axios.get(`http://127.0.0.1:5000/user/doctors/${docId}`);
+            const docResponse = await axios.get(`${BASE_URL}/user/doctors/${docId}`);
             doctorsData[docId] = docResponse.data.doctor;
           } catch (err) {
             console.log(`Could not fetch doctor with ID ${docId}:`, err);
@@ -56,7 +59,7 @@ const Appointments = () => {
     try {
       setLoading(true);
       console.log(`DEBUG - Canceling appointment with ID: ${appointmentToCancel}`);
-      await axios.delete(`http://127.0.0.1:5000/user/cancel-appointment/${appointmentToCancel}`);
+      await axios.delete(`${BASE_URL}/user/cancel-appointment/${appointmentToCancel}`);
       
       // Remove the canceled appointment from state
       setAppointments(appointments.filter(app => app._id !== appointmentToCancel));

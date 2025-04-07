@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from "react";
 import Squares from "./Squares";
 import { Link } from "react-router-dom";

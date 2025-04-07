@@ -11,13 +11,15 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Reset error message
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

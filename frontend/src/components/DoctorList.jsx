@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
+
 import doctorImage from "../assets/doctor.jpg"; // Default doctor image
 import Squares from "./Squares";
 import { motion, AnimatePresence } from "framer-motion"; // For animations
@@ -7,7 +7,10 @@ import { Star, MapPin, Calendar, Heart, X, Clock, Award, Bookmark, MessageSquare
 import BookAppointment from "./BookAppointment"; // Import the BookAppointment component
 import HospitalMapView from "./HospitalMapView";
 
-const API_URL = "http://127.0.0.1:5000/user/doctors"; // Corrected API URL
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
 
 const DoctorDetailModal = ({ doctor, onClose }) => {
   const [showBookAppointment, setShowBookAppointment] = useState(false);
@@ -222,7 +225,7 @@ const DoctorList = () => {
   const [view, setView] = useState('grid'); // 'grid' or 'map'
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(`${BASE_URL}/user/doctors`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch doctors");
