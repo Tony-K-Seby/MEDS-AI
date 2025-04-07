@@ -1,4 +1,4 @@
-﻿absl-py==2.1.0
+absl-py==2.1.0
 altair==5.1.2
 amqp==5.3.1
 aniso8601==9.0.1
@@ -73,13 +73,13 @@ namex==0.0.8
 numpy==1.26.4
 opt_einsum==3.4.0
 optree==0.14.0
-packaging<24
+packaging>=20.0,<24
 pandas==2.2.3
 passlib==1.7.4
 Pillow==10.1.0
 plotly==5.18.0
 prompt_toolkit==3.0.50
-protobuf==5.29.3
+protobuf==4.25.3
 pyarrow==19.0.1
 PyAudio==0.2.14
 pycparser==2.22
