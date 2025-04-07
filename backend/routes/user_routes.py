@@ -186,55 +186,6 @@ def get_disease_precautions():
     
 
 
-# @user_bp.route("/book-appointment", methods=["POST"])
-# @cross_origin()
-# def book_appointment():
-#     data = request.get_json()
-#     if not data:
-#         return jsonify({"error": "No data provided"}), 400
-    
-#     user_id = data.get("user_id")
-#     doctor_id = data.get("doctor_id")
-#     slot = data.get("slot")
-    
-#     if not all([user_id, doctor_id, slot]):
-#         return jsonify({"error": "Missing required fields"}), 400
-
-#     # Validate slot against doctor's available slots
-#     doctor = mongo.db.doctors.find_one({"_id": ObjectId(doctor_id)})
-#     if not doctor:
-#         return jsonify({"error": "Doctor not found"}), 404
-
-#     available_slots = []
-#     for slot_range in doctor.get("availability", []):
-#         if " - " in slot_range:
-#             start, end = slot_range.split(" - ")
-#             current = datetime.strptime(start, "%I:%M %p")
-#             end_time = datetime.strptime(end, "%I:%M %p")
-
-#             while current < end_time:
-#                 available_slots.append(current.strftime("%I:%M %p"))
-#                 current += datetime.timedelta(minutes=30)
-#         else:
-#             available_slots.append(slot_range)
-
-#     if slot not in available_slots:
-#         return jsonify({"error": "Invalid time slot"}), 400
-
-#     # Book appointment
-#     appointment = {
-#         "user_id": ObjectId(user_id),
-#         "doctor_id": ObjectId(doctor_id),
-#         "slot": slot,
-#         "status": "booked"
-#     }
-    
-#     result = mongo.db.appointments.insert_one(appointment)
-#     if result.inserted_id:
-#         appointment["_id"] = str(result.inserted_id)
-#         return jsonify({"appointment": appointment}), 201
-#     else:
-#         return jsonify({"error": "Failed to book appointment"}), 500
 
 @user_bp.route("/book-appointment", methods=["POST"])
 def book_appointment():

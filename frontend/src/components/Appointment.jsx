@@ -176,7 +176,7 @@ const Appointments = () => {
                 <div className="p-3">
                   <div className="space-y-2">
                     <div className="bg-white bg-opacity-50 p-1 rounded text-xs">
-                      <span className="font-semibold">Day:</span> {appointment.day}
+                      <span className="font-semibold">Appointment Day:</span> {appointment.day}
                     </div>
                     <div className="bg-white bg-opacity-50 p-1 rounded text-xs">
                       <span className="font-semibold">Time:</span> {appointment.slot}

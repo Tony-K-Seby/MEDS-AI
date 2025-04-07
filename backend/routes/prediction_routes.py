@@ -301,58 +301,6 @@ def get_summary_route():
 ###########previous_predictions
 from bson import ObjectId
 
-# @prediction_bp.route("/previous-predictions", methods=["GET"])
-# def fetch_previous_predictions():
-#     try:
-#         # Extract user ID (required parameter)
-#         user_id = request.args.get("user_id")
-        
-#         # Validate user ID
-#         if not user_id:
-#             return jsonify({"error": "User ID is required"}), 400
-
-#         try:
-#             user_id = ObjectId(user_id)  # Convert user_id to ObjectId
-#         except:
-#             return jsonify({"error": "Invalid user ID format"}), 400  # Handle invalid IDs
-
-#         # Prepare query to find predictions for the user
-#         query = {"user_id": user_id}
-
-#         # Fetch all predictions for the user
-#         predictions_cursor = mongo.db.previous_predictions.find(query)
-#         predictions = list(predictions_cursor)  # Convert cursor to list
-
-#         # Process predictions for response
-#         processed_predictions = []
-#         for prediction in predictions:
-#             processed_pred = {
-#                 "_id": str(prediction["_id"]),
-#                 "user_id": str(prediction["user_id"]),  # Convert back to string for JSON response
-#                 "symptoms": prediction["symptoms"],
-#                 "disease_id": prediction["disease_id"],
-#                 "disease_name": prediction["disease_name"],
-#                 "specialty_id": prediction["specialty_id"],
-#                 "created_at": prediction["created_at"].isoformat(),
-#                 "confidence_scores": {
-#                     "rf": prediction.get("confidence_scores", {}).get("rf"),
-#                     "nb": prediction.get("confidence_scores", {}).get("nb"),
-#                     "svm": prediction.get("confidence_scores", {}).get("svm")
-#                 },
-#                 "rf_prediction": prediction.get("rf_prediction"),
-#                 "nb_prediction": prediction.get("nb_prediction"),
-#                 "svm_prediction": prediction.get("svm_prediction")
-#             }
-#             processed_predictions.append(processed_pred)
-
-#         return jsonify({"predictions": processed_predictions})
-
-#     except Exception as e:
-#         current_app.logger.error(f"Error fetching previous predictions: {str(e)}")
-#         return jsonify({
-#             "error": "Failed to fetch previous predictions", 
-#             "details": str(e)
-#         }), 500
 
 @prediction_bp.route("/previous-predictions", methods=["GET"])
 def fetch_previous_predictions():
