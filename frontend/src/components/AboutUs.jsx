@@ -157,7 +157,7 @@ const AboutUs = () => {
             </div>
 
             {/* Rotating Crates with Hover Effect */}
-            <div 
+{/*             <div 
               ref={cratesRef} 
               className="md:w-1/3 h-48 relative z-30 flex justify-center"
               onMouseEnter={() => setIsHovering(true)}
@@ -175,20 +175,20 @@ const AboutUs = () => {
                   rel="noopener noreferrer"
                   className={`crate absolute w-24 h-24 bg-gradient-to-br from-${colorSet.color1} to-${colorSet.color2} rounded-2xl shadow-lg opacity-80 transition-all duration-300 hover:opacity-100 hover:scale-110 flex items-center justify-center overflow-hidden`}
                 >
-                  {/* Team member image */}
+               
                   <img 
                     src={colorSet.img} 
                     alt={colorSet.name} 
                     className="w-full h-full object-cover rounded-2xl"
                   />
                   
-                  {/* Name overlay on hover */}
+                
                   <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
                     <p className="text-white font-medium text-sm">{colorSet.name}</p>
                   </div>
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
