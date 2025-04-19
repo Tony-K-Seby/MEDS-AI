@@ -5,6 +5,7 @@ from routes.prediction_routes import prediction_bp
 from routes.auth_routes import auth_bp
 from routes.hospital_routes import hospital_bp  # Import hospital routes
 from routes.doctor_routes import doctor_bp  # Import doctor routes
+from routes.theclock import theclock_bp
 
 def register_routes(app: Flask):
     """Register all routes with the Flask app"""
@@ -14,3 +15,4 @@ def register_routes(app: Flask):
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(hospital_bp, url_prefix="/hospitals")
     app.register_blueprint(doctor_bp, url_prefix="/doctor")
+    app.register_blueprint(theclock_bp, url_prefix="/theclock")

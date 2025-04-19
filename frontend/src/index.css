@@ -561,3 +561,534 @@ body {
   border-left: none;
   border-top: none;
 }
+
+/* oooooooooooooooooooooooooooooooooooooooooooooooooooooooo */
+/* The Clock Component Styles */
+/* Add these styles to your CSS file */
+
+/* Logo Pulse Animation */
+/* Base animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes ellipsis {
+  0% { content: "Calculating your fate"; }
+  33% { content: "Calculating your fate."; }
+  66% { content: "Calculating your fate.."; }
+  100% { content: "Calculating your fate..."; }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      -0.2px -0.2px 0.5px #fff,
+      0.2px 0.2px 0.5px #ff3333,
+      0 0 5px #ff3333,
+      0 0 10px #ff3333;
+    opacity: 0.8;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+@keyframes reveal {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes appear {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes highlight {
+  from { color: #333; }
+  to { color: #ff3333; }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.02); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.05); }
+  50% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulseEffect {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 0, 0, 0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 0, 0, 0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 0, 0, 0.7); }
+}
+
+/* Logo container styles */
+.logo-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo-container .logo {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.pulse-effect {
+  animation: pulse 1s infinite;
+}
+
+/* Clock overlay and container */
+.clock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.clock-container {
+  background-color: #121212;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  border: 1px solid #333;
+}
+
+.clock-container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff3333, #ff9966);
+}
+
+.clock-container.pulse-animation {
+  animation: pulseEffect 1s infinite;
+}
+
+/* Clock title */
+.clock-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #ff3333;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  animation: flicker 3s infinite alternate;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Loading animation */
+.loading {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 1.5rem;
+  color: #ff3333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  position: relative;
+}
+
+.loading:after {
+  content: "Calculating your fate...";
+  display: inline-block;
+  animation: ellipsis 1.5s infinite;
+}
+
+/* Form styling */
+.clock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #ddd;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group select,
+.form-group input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  background: #333;
+  border: 1px solid #555;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+}
+
+.dob-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.dob-inputs select {
+  flex: 1;
+}
+
+.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox input {
+  margin: 0;
+}
+
+.checkbox label {
+  margin: 0;
+}
+
+.diet-fitness {
+  margin-left: 20px;
+}
+
+/* Submit button */
+.submit-btn {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #ff3333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(255, 51, 51, 0.2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #e61919;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(255, 51, 51, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(255, 51, 51, 0.2);
+}
+
+/* Death results section */
+.death-results {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  animation: fadeIn 1s ease-in;
+}
+
+.test-date {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.current-age {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  border-left: 3px solid #555;
+}
+
+.age-details {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 5px;
+}
+
+.death-prediction {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 51, 51, 0.1);
+  border-radius: 5px;
+  border-left: 3px solid #ff3333;
+}
+
+.death-date {
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 1.3rem;
+  animation: reveal 1s ease-in-out;
+}
+
+/* Social share */
+.social-share {
+  display: flex;
+  justify-content: center;
+}
+
+.share-facebook {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-facebook:hover {
+  background-color: #0d65d9;
+}
+
+/* Life expectancy */
+.life-expectancy {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 25px 0;
+}
+
+.life-expectancy h2 {
+  font-size: 22px;
+  color: #fff;
+  animation: highlight 2s infinite alternate;
+}
+
+/* Countdown section */
+.countdown {
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  margin: 20px 0;
+}
+
+.countdown-text {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.countdown-number {
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: inline-block;
+  animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.years-left {
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* Comparisons */
+.comparisons {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #bbb;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+/* Tombstone */
+.tombstone {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.tombstone-image {
+  width: 200px;
+  height: 250px;
+  background: linear-gradient(to bottom, #666, #444);
+  border-radius: 100px 100px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #666;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: appear 1s ease-in-out;
+}
+
+.epitaph {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Times New Roman', serif;
+}
+
+.epitaph p {
+  margin: 5px 0;
+  text-transform: capitalize;
+}
+
+.epitaph p:first-child {
+  font-style: italic;
+}
+
+.epitaph p:nth-child(3) {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.reaction-btn,
+.retake-btn {
+  padding: 8px 15px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reaction-btn:hover, 
+.retake-btn:hover {
+  background-color: #555;
+}
+
+.separator {
+  color: #666;
+}
+
+/* Secret text animation */
+.secret-text {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: 10px;
+  color: rgba(255,51,51,0.8);
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .clock-container {
+    width: 95%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+  
+  .tombstone-image {
+    width: 150px;
+    height: 170px;
+  }
+  
+  .clock-title {
+    font-size: 24px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  .reaction-btn, 
+  .retake-btn {
+    width: 100%;
+  }
+}
